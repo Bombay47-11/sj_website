@@ -19,11 +19,11 @@
     --color-off-white: #f5f5f5;
     --color-light-gray: #e8e8e8;
     --color-text-dark: #1a3a4d;
-    
+
     /* Typography */
     --font-display: 'Permanent Marker', cursive;
     --font-body: 'Montserrat', sans-serif;
-    
+
     /* Font Sizes */
     --text-xs: 0.75rem;
     --text-sm: 0.875rem;
@@ -35,7 +35,7 @@
     --text-4xl: 2.25rem;
     --text-5xl: 3rem;
     --text-6xl: 3.75rem;
-    
+
     /* Spacing */
     --space-1: 0.25rem;
     --space-2: 0.5rem;
@@ -49,15 +49,15 @@
     --space-16: 4rem;
     --space-20: 5rem;
     --space-24: 6rem;
-    
+
     /* Container */
     --container-max: 1140px;
     --container-padding: 1.5rem;
-    
+
     /* Transitions */
     --transition-fast: 150ms ease;
     --transition-base: 300ms ease;
-    
+
     /* Shadows */
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15);
@@ -68,7 +68,9 @@
    RESET & BASE STYLES
    ========================================================================== */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -229,7 +231,7 @@ ul {
         align-items: center;
         justify-content: center;
     }
-    
+
     .header__nav {
         position: fixed;
         top: 0;
@@ -242,16 +244,16 @@ ul {
         transition: right var(--transition-base);
         box-shadow: var(--shadow-lg);
     }
-    
+
     .header__nav--open {
         right: 0;
     }
-    
+
     .header__nav-list {
         flex-direction: column;
         gap: var(--space-6);
     }
-    
+
     .header__nav-link {
         font-size: var(--text-lg);
     }
@@ -318,7 +320,9 @@ ul {
 }
 
 .btn__icon {
-    font-size: var(--text-lg);
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -346,11 +350,28 @@ ul {
     justify-content: center;
 }
 
+/* ARRYA boat image - background layer */
+.hero__arrya-image {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 80vh;
+    width: auto;
+    max-width: 90%;
+    object-fit: contain;
+    object-position: bottom center;
+    z-index: 1;
+}
+
+/* Character cutouts - foreground layer */
 .hero__bg-image {
+    position: relative;
     max-height: 90vh;
     width: auto;
     object-fit: contain;
     object-position: bottom center;
+    z-index: 2;
 }
 
 .hero__content {
@@ -383,6 +404,11 @@ ul {
 }
 
 @media (max-width: 768px) {
+    .hero__arrya-image {
+        max-height: 50vh;
+        max-width: 100%;
+    }
+
     .hero__headline {
         position: relative;
         bottom: auto;
@@ -392,20 +418,20 @@ ul {
         background: rgba(255, 255, 255, 0.9);
         margin-top: auto;
     }
-    
+
     .hero__title {
         font-size: var(--text-xl);
     }
-    
+
     .hero__cta-container {
         padding: var(--space-4);
     }
-    
+
     .btn--trailer,
     .btn--tickets {
         transform: rotate(0);
     }
-    
+
     .btn--trailer:hover,
     .btn--tickets:hover {
         transform: translateY(-2px);
@@ -483,7 +509,7 @@ ul {
     .trailer-section__title {
         font-size: var(--text-3xl);
     }
-    
+
     .trailer-section__content {
         grid-template-columns: 1fr;
         gap: var(--space-8);
@@ -509,23 +535,28 @@ ul {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
+    background-image:
         radial-gradient(2px 2px at 20px 30px, white, transparent),
-        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
         radial-gradient(1px 1px at 90px 40px, white, transparent),
-        radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(2px 2px at 160px 120px, rgba(255, 255, 255, 0.9), transparent),
         radial-gradient(1px 1px at 230px 80px, white, transparent),
-        radial-gradient(2px 2px at 300px 150px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(2px 2px at 300px 150px, rgba(255, 255, 255, 0.7), transparent),
         radial-gradient(1px 1px at 370px 60px, white, transparent),
-        radial-gradient(2px 2px at 450px 180px, rgba(255,255,255,0.8), transparent);
+        radial-gradient(2px 2px at 450px 180px, rgba(255, 255, 255, 0.8), transparent);
     background-size: 500px 200px;
     animation: twinkle 5s ease-in-out infinite alternate;
     opacity: 0.5;
 }
 
 @keyframes twinkle {
-    0% { opacity: 0.4; }
-    100% { opacity: 0.7; }
+    0% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 0.7;
+    }
 }
 
 .story-intro__container {
@@ -557,7 +588,7 @@ ul {
     .story-intro__container {
         grid-template-columns: 1fr;
     }
-    
+
     .story-intro__title {
         font-size: var(--text-xl);
         text-align: center;
@@ -605,11 +636,11 @@ ul {
     .about-section__container {
         grid-template-columns: 1fr;
     }
-    
+
     .about-section__title {
         font-size: var(--text-2xl);
     }
-    
+
     .about-section__image {
         order: -1;
     }
@@ -658,7 +689,7 @@ ul {
     .gallery__grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .gallery__img {
         height: 150px;
     }
@@ -888,7 +919,7 @@ ul {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .footer__nav-list {
         justify-content: center;
     }
@@ -945,17 +976,18 @@ ul {
    ========================================================================== */
 
 @media print {
+
     .header,
     .btn,
     .header__menu-toggle {
         display: none !important;
     }
-    
+
     body {
         background: white;
         color: black;
     }
-    
+
     section {
         page-break-inside: avoid;
     }

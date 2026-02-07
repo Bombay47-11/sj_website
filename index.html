@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nur im Kino – Segeljungs</title>
-    <meta name="description" content="SEGELJUNGS – MIT NULL AHNUNG UM DIE WELT. 5 Jahre. 38 Länder. Ein Film. Ab 2. April nur im Kino.">
-    
+    <meta name="description"
+        content="SEGELJUNGS – MIT NULL AHNUNG UM DIE WELT. 5 Jahre. 38 Länder. Ein Film. Ab 2. April nur im Kino.">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
+
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
     <!-- Header -->
     <header class="header" id="header">
         <div class="header__container">
             <a href="#" class="header__logo">
-                <img src="assets/images/Segeljungs Kinofilm Schriftzug weiß.png" alt="Segeljungs - Mit null Ahnung um die Welt" class="header__logo-img">
+                <img src="assets/images/Segeljungs Kinofilm Schriftzug weiß.png"
+                    alt="Segeljungs - Mit null Ahnung um die Welt" class="header__logo-img">
             </a>
-            
+
             <button class="header__menu-toggle" id="menuToggle" aria-label="Menü öffnen">
                 <span class="header__menu-icon"></span>
             </button>
-            
+
             <nav class="header__nav" id="mainNav">
                 <ul class="header__nav-list">
                     <li class="header__nav-item">
@@ -49,16 +55,24 @@
         <!-- Section 1: Hero -->
         <section class="hero" id="hero">
             <div class="hero__background">
+                <!-- ARRYA boat image as background layer -->
+                <img src="assets/images/ARRYA Cover Bild.avif" alt="Segelboot ARRYA" class="hero__arrya-image">
+                <!-- Character cutouts on top -->
                 <img src="assets/images/Vince und Tim mit Transparenz.png" alt="Vince und Tim" class="hero__bg-image">
             </div>
             <div class="hero__content">
                 <div class="hero__cta-container">
                     <a href="#trailer" class="btn btn--trailer">
-                        <span class="btn__icon">⚓</span>
+                        <svg class="btn__icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2C12 2 4 8 4 15c0 1.5.5 3 1.5 4 .5.5 1 1 2 1.5.5.5 1.5 1 2.5 1.5 1 .5 2 .5 2 .5s1 0 2-.5c1-.5 2-1 2.5-1.5 1-.5 1.5-1 2-1.5 1-1 1.5-2.5 1.5-4 0-7-8-13-8-13zm0 4c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 14c-1.7 0-3.2-.6-4.3-1.7L12 14l4.3 4.3c-1.1 1.1-2.6 1.7-4.3 1.7z" />
+                        </svg>
                         <span>TRAILER</span>
                     </a>
                     <a href="#sektion-001" class="btn btn--tickets">
-                        <span class="btn__icon">🎬</span>
+                        <svg class="btn__icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
+                        </svg>
                         <span>Tickets</span>
                     </a>
                 </div>
@@ -73,14 +87,17 @@
             <div class="trailer-section__container">
                 <h1 class="trailer-section__title">Film Trailer</h1>
                 <p class="trailer-section__subtitle">Ein Film von Tim Hund und Tobias Steinigeweg</p>
-                
+
                 <div class="trailer-section__content">
                     <div class="trailer-section__text">
-                        <p>Mit null Ahnung gestartet und einmal um die Welt gesegelt: Die Segeljungs nehmen dich mit auf fünf Jahre Abenteuer, Chaos, Freundschaft und Freiheit. Ein Film voller Humor, Herz und echter Geschichten vom Meer.</p>
+                        <p>Mit null Ahnung gestartet und einmal um die Welt gesegelt: Die Segeljungs nehmen dich mit auf
+                            fünf Jahre Abenteuer, Chaos, Freundschaft und Freiheit. Ein Film voller Humor, Herz und
+                            echter Geschichten vom Meer.</p>
                     </div>
                     <div class="trailer-section__video">
                         <div class="trailer-section__video-wrapper">
-                            <img src="assets/images/Trailer coming soon.avif" alt="Trailer Coming Soon" class="trailer-section__poster">
+                            <img src="assets/images/Trailer coming soon.avif" alt="Trailer Coming Soon"
+                                class="trailer-section__poster">
                             <!-- When trailer is available, replace with:
                             <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
                             -->
@@ -94,10 +111,12 @@
         <section class="story-intro" id="story">
             <div class="story-intro__container">
                 <div class="story-intro__content">
-                    <h2 class="story-intro__title">Mit SEGELJUNGS – MIT NULL AHNUNG UM DIE WELT startet ein ungewöhnliches Dokumentarfilmprojekt in den Kinos</h2>
+                    <h2 class="story-intro__title">Mit SEGELJUNGS – MIT NULL AHNUNG UM DIE WELT startet ein
+                        ungewöhnliches Dokumentarfilmprojekt in den Kinos</h2>
                 </div>
                 <div class="story-intro__image">
-                    <img src="assets/images/segeljungs_009_c_Filmwelt.avif" alt="Segeljungs auf dem Boot" class="story-intro__img">
+                    <img src="assets/images/segeljungs_009_c_Filmwelt.avif" alt="Segeljungs auf dem Boot"
+                        class="story-intro__img">
                 </div>
             </div>
         </section>
@@ -110,7 +129,13 @@
                 </div>
                 <div class="about-section__content">
                     <h2 class="about-section__title">Einfach mal machen!</h2>
-                    <p>Ganz nach dem Motto „Einfach machen", erfüllen sich vier Jungs einen Traum – nach der Schule einmal um die ganze Welt! Aber nicht über Straßen juckeln in irgendeinem Van oder schlichtes Backpacking. Segeln soll es sein! Tim, Vince, Michi und Tom aus Bad Tölz im bayrischen Oberland stürzen sich ohne jede Segelerfahrung in das Abenteuer ihres Lebens. Sie möchten Ozeane überqueren, das Leben genießen und sich einfach etwas trauen. Voller Naivität, mit wenig Geld aber enormer Willenskraft und unfassbarem Urvertrauen: „Wird schon." Also: Jobben, Boot kaufen und einfach los.</p>
+                    <p>Ganz nach dem Motto „Einfach machen", erfüllen sich vier Jungs einen Traum – nach der Schule
+                        einmal um die ganze Welt! Aber nicht über Straßen juckeln in irgendeinem Van oder schlichtes
+                        Backpacking. Segeln soll es sein! Tim, Vince, Michi und Tom aus Bad Tölz im bayrischen Oberland
+                        stürzen sich ohne jede Segelerfahrung in das Abenteuer ihres Lebens. Sie möchten Ozeane
+                        überqueren, das Leben genießen und sich einfach etwas trauen. Voller Naivität, mit wenig Geld
+                        aber enormer Willenskraft und unfassbarem Urvertrauen: „Wird schon." Also: Jobben, Boot kaufen
+                        und einfach los.</p>
                 </div>
             </div>
         </section>
@@ -151,7 +176,12 @@
         <section class="transition-section" id="route">
             <div class="transition-section__content">
                 <h2 class="transition-section__title">Von der Ostsee und der Nordsee in den Atlantik</h2>
-                <p class="transition-section__text">Karibik, weiter in den Pazifik und die Südsee, über Asien in den Indischen Ozean und durchs Rote Meer zurück nach Europa – die Route steht grob fest, mehr Plan braucht es nicht. Denn das eigentliche Ziel ist die Reise selbst: „Meer haben vom Leben, Freiheit, Freundschaft, Entdeckergeist, Selbstfindung, Erwachsen werden ohne den ganzen gesellschaftlichen Druck". Die sympathischen Jungs aus dem tiefsten Bayern legen ab, um die Weltmeere zu erobern und segeln dabei auch zu sich selbst.</p>
+                <p class="transition-section__text">Karibik, weiter in den Pazifik und die Südsee, über Asien in den
+                    Indischen Ozean und durchs Rote Meer zurück nach Europa – die Route steht grob fest, mehr Plan
+                    braucht es nicht. Denn das eigentliche Ziel ist die Reise selbst: „Meer haben vom Leben, Freiheit,
+                    Freundschaft, Entdeckergeist, Selbstfindung, Erwachsen werden ohne den ganzen gesellschaftlichen
+                    Druck". Die sympathischen Jungs aus dem tiefsten Bayern legen ab, um die Weltmeere zu erobern und
+                    segeln dabei auch zu sich selbst.</p>
             </div>
         </section>
 
@@ -171,21 +201,24 @@
                             <img src="assets/icons/Icon Crew V1.png" alt="Crew Icon">
                         </div>
                         <h3 class="stats-card__title">Crew</h3>
-                        <p class="stats-card__text">Tim Hund<br>Vincent Goymann<br>Thomas Schwarz<br>Michael Bischoff</p>
+                        <p class="stats-card__text">Tim Hund<br>Vincent Goymann<br>Thomas Schwarz<br>Michael Bischoff
+                        </p>
                     </div>
                     <div class="stats-card">
                         <div class="stats-card__icon">
                             <img src="assets/icons/Icon Boot V1.png" alt="Segelboot Icon">
                         </div>
                         <h3 class="stats-card__title">Segelboot</h3>
-                        <p class="stats-card__text">Dieses Boot war<br>unser Zuhause, unser<br>Problemkind und<br>unser größter<br>Glücksfall zugleich.</p>
+                        <p class="stats-card__text">Dieses Boot war<br>unser Zuhause, unser<br>Problemkind und<br>unser
+                            größter<br>Glücksfall zugleich.</p>
                     </div>
                     <div class="stats-card">
                         <div class="stats-card__icon">
                             <img src="assets/icons/Icon Welt  V1.png" alt="Route Icon">
                         </div>
                         <h3 class="stats-card__title">Route</h3>
-                        <p class="stats-card__text">Barfußroute heißt:<br>mit den Passatwinden<br>entlang des Äquators<br>um die Welt segeln.</p>
+                        <p class="stats-card__text">Barfußroute heißt:<br>mit den Passatwinden<br>entlang des
+                            Äquators<br>um die Welt segeln.</p>
                     </div>
                     <div class="stats-card">
                         <div class="stats-card__icon">
@@ -207,7 +240,8 @@
                             <img src="assets/icons/Icon Speicher  V1.png" alt="Video-Daten Icon">
                         </div>
                         <h3 class="stats-card__title">Video-Daten</h3>
-                        <p class="stats-card__text">20 Terabyte Rohmaterial,<br>über 5 Jahre gesammelt,<br>mit über 11 verschiedenen<br>Kameras gefilmt</p>
+                        <p class="stats-card__text">20 Terabyte Rohmaterial,<br>über 5 Jahre gesammelt,<br>mit über 11
+                            verschiedenen<br>Kameras gefilmt</p>
                     </div>
                     <div class="stats-card">
                         <div class="stats-card__icon">
@@ -221,14 +255,16 @@
                             <img src="assets/icons/Icon Kalender  V1.png" alt="8 Jahre Icon">
                         </div>
                         <h3 class="stats-card__title">8 Jahre</h3>
-                        <p class="stats-card__text">2018 hatten wir die Idee<br>mit der Weltumsegelung<br>und jetzt 2026<br>gibt es den fertigen Film</p>
+                        <p class="stats-card__text">2018 hatten wir die Idee<br>mit der Weltumsegelung<br>und jetzt
+                            2026<br>gibt es den fertigen Film</p>
                     </div>
                     <div class="stats-card">
                         <div class="stats-card__icon">
                             <img src="assets/icons/Icon FSK  V1.png" alt="FSK 12 Icon">
                         </div>
                         <h3 class="stats-card__title">Altersfreigabe</h3>
-                        <p class="stats-card__text">Es ist nicht immer<br>alles gut gegangen…<br>Genau das zeigen wir.<br>Denn auch das<br>gehört zur Reise dazu.</p>
+                        <p class="stats-card__text">Es ist nicht immer<br>alles gut gegangen…<br>Genau das zeigen
+                            wir.<br>Denn auch das<br>gehört zur Reise dazu.</p>
                     </div>
                 </div>
             </div>
@@ -238,38 +274,39 @@
         <section class="credits-section" id="credits">
             <div class="credits-section__container">
                 <p class="credits-section__text">
-                    <span class="credits-section__label">FILMWELT VERLEIHAGENTUR</span> PRÄSENTIERT EINEN FILM VON 
-                    <span class="credits-section__name">TIM HUND</span> UND 
-                    <span class="credits-section__name">TOBIAS STEINIGEWEG</span> EINE PRODUKTION VON 
+                    <span class="credits-section__label">FILMWELT VERLEIHAGENTUR</span> PRÄSENTIERT EINEN FILM VON
+                    <span class="credits-section__name">TIM HUND</span> UND
+                    <span class="credits-section__name">TOBIAS STEINIGEWEG</span> EINE PRODUKTION VON
                     <span class="credits-section__name">SEGELJUNGS</span>
-                    <br>IN KOOPERATION MIT 
-                    <span class="credits-section__name">NONFICTIONPLANET</span> „SEGELJUNGS – MIT NULL AHNUNG UM DIE WELT"
-                    <br><span class="credits-section__label">DRAMATURGIE UND SCHNITT</span> 
-                    <span class="credits-section__name">TOBIAS STEINIGEWEG</span> 
-                    <span class="credits-section__label">VOR UND HINTER DER KAMERA</span> 
-                    <span class="credits-section__name">MICHAEL BISCHOF</span>, 
-                    <span class="credits-section__name">VINCENT GOYMANN</span>, 
-                    <span class="credits-section__name">TIM HUND</span>, 
+                    <br>IN KOOPERATION MIT
+                    <span class="credits-section__name">NONFICTIONPLANET</span> „SEGELJUNGS – MIT NULL AHNUNG UM DIE
+                    WELT"
+                    <br><span class="credits-section__label">DRAMATURGIE UND SCHNITT</span>
+                    <span class="credits-section__name">TOBIAS STEINIGEWEG</span>
+                    <span class="credits-section__label">VOR UND HINTER DER KAMERA</span>
+                    <span class="credits-section__name">MICHAEL BISCHOF</span>,
+                    <span class="credits-section__name">VINCENT GOYMANN</span>,
+                    <span class="credits-section__name">TIM HUND</span>,
                     <span class="credits-section__name">THOMAS SCHWARZ</span>
-                    <br><span class="credits-section__label">MUSIK</span> 
-                    <span class="credits-section__name">MARTIN KOHLSTEDT</span>, 
-                    <span class="credits-section__name">SEAN KOCH</span> 
-                    <span class="credits-section__label">SOUNDDESIGN</span> 
-                    <span class="credits-section__name">SASCHA PRANGEN</span> 
-                    <span class="credits-section__label">TONMISCHUNG</span> 
+                    <br><span class="credits-section__label">MUSIK</span>
+                    <span class="credits-section__name">MARTIN KOHLSTEDT</span>,
+                    <span class="credits-section__name">SEAN KOCH</span>
+                    <span class="credits-section__label">SOUNDDESIGN</span>
+                    <span class="credits-section__name">SASCHA PRANGEN</span>
+                    <span class="credits-section__label">TONMISCHUNG</span>
                     <span class="credits-section__name">PIERRE BRAND – PRIMETIME STUDIO</span>
-                    <br><span class="credits-section__label">GRADING</span> 
-                    <span class="credits-section__name">RONNEY AFORTU – OPTICAL ART</span> 
-                    <span class="credits-section__label">ILLUSTRATION</span> 
-                    <span class="credits-section__name">JANIS VERNIER</span> 
-                    <span class="credits-section__label">PRODUKTIONSLEITUNG</span> 
+                    <br><span class="credits-section__label">GRADING</span>
+                    <span class="credits-section__name">RONNEY AFORTU – OPTICAL ART</span>
+                    <span class="credits-section__label">ILLUSTRATION</span>
+                    <span class="credits-section__name">JANIS VERNIER</span>
+                    <span class="credits-section__label">PRODUKTIONSLEITUNG</span>
                     <span class="credits-section__name">HUBERT MARADY</span>
-                    <br><span class="credits-section__label">KO-PRODUZENTEN</span> 
-                    <span class="credits-section__name">JENS FINTELMANN</span>, 
-                    <span class="credits-section__name">THOMAS SEEKAMP</span>, 
-                    <span class="credits-section__name">TOBIAS STEINIGEWEG</span> 
-                    <span class="credits-section__label">PRODUZENTEN</span> 
-                    <span class="credits-section__name">TIM HUND</span>, 
+                    <br><span class="credits-section__label">KO-PRODUZENTEN</span>
+                    <span class="credits-section__name">JENS FINTELMANN</span>,
+                    <span class="credits-section__name">THOMAS SEEKAMP</span>,
+                    <span class="credits-section__name">TOBIAS STEINIGEWEG</span>
+                    <span class="credits-section__label">PRODUZENTEN</span>
+                    <span class="credits-section__name">TIM HUND</span>,
                     <span class="credits-section__name">NIKOLAUS GELPKE</span>
                 </p>
             </div>
@@ -280,7 +317,8 @@
     <footer class="footer" id="footer">
         <div class="footer__container">
             <div class="footer__copyright">
-                <p>© Segeljungs. Alle Rechte vorbehalten. Inhalte, Bilder und Videos sind urheberrechtlich geschützt.</p>
+                <p>© Segeljungs. Alle Rechte vorbehalten. Inhalte, Bilder und Videos sind urheberrechtlich geschützt.
+                </p>
             </div>
             <nav class="footer__nav">
                 <ul class="footer__nav-list">
@@ -295,4 +333,5 @@
 
     <script src="js/main.js"></script>
 </body>
+
 </html>
