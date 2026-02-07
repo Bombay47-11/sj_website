@@ -1,117 +1,337 @@
 /**
- * Segeljungs - Nur im Kino
- * Main JavaScript file
- * Handles: Mobile menu toggle, sticky header, smooth scroll
+ * SEGELJUNGS - NUR IM KINO
+ * Main JavaScript
+ * 
+ * Features:
+ * - Scroll reveal animations (IntersectionObserver)
+ * - Header scroll behavior
+ * - Mobile menu toggle
+ * - Gallery lightbox
+ * - Smooth scrolling for anchor links
  */
 
-(function() {
+(function () {
     'use strict';
 
-    // DOM Elements
-    const header = document.getElementById('header');
-    const menuToggle = document.getElementById('menuToggle');
-    const mainNav = document.getElementById('mainNav');
+    // ============================================
+    // DOM READY
+    // ============================================
+    document.addEventListener('DOMContentLoaded', init);
 
-    /**
-     * Toggle mobile navigation menu
-     */
-    function toggleMobileMenu() {
-        mainNav.classList.toggle('header__nav--open');
-        
-        // Update aria-label for accessibility
-        const isOpen = mainNav.classList.contains('header__nav--open');
-        menuToggle.setAttribute('aria-label', isOpen ? 'Menü schließen' : 'Menü öffnen');
-        menuToggle.setAttribute('aria-expanded', isOpen);
+    function init() {
+        initScrollReveal();
+        initHeader();
+        initMobileMenu();
+        initLightbox();
+        initSmoothScroll();
     }
 
-    /**
-     * Close mobile menu when clicking outside
-     */
-    function handleOutsideClick(event) {
-        if (mainNav.classList.contains('header__nav--open')) {
-            if (!mainNav.contains(event.target) && !menuToggle.contains(event.target)) {
-                mainNav.classList.remove('header__nav--open');
-                menuToggle.setAttribute('aria-expanded', 'false');
+    // ============================================
+    // SCROLL REVEAL ANIMATIONS
+    // ============================================
+    function initScrollReveal() {
+        const revealElements = document.querySelectorAll('.reveal');
+
+        if (!revealElements.length) return;
+
+        // Check if IntersectionObserver is supported
+        if (!('IntersectionObserver' in window)) {
+            // Fallback: show all elements immediately
+            revealElements.forEach(el => el.classList.add('visible'));
+            return;
+        }
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -50px 0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optional: unobserve after revealing for performance
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(el => observer.observe(el));
+    }
+
+    // ============================================
+    // HEADER SCROLL BEHAVIOR
+    // ============================================
+    function initHeader() {
+        const header = document.getElementById('header');
+        if (!header) return;
+
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        function updateHeader() {
+            const scrollY = window.scrollY;
+
+            // Add scrolled class when user scrolls down
+            if (scrollY > 50) {
+                header.classList.add('header--scrolled');
+            } else {
+                header.classList.remove('header--scrolled');
+            }
+
+            lastScrollY = scrollY;
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateHeader);
+                ticking = true;
+            }
+        }, { passive: true });
+
+        // Initial check
+        updateHeader();
+    }
+
+    // ============================================
+    // MOBILE MENU
+    // ============================================
+    function initMobileMenu() {
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuLinks = document.querySelectorAll('.mobile-menu__link');
+
+        if (!menuToggle || !mobileMenu) return;
+
+        function toggleMenu() {
+            const isActive = mobileMenu.classList.contains('active');
+
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = isActive ? '' : 'hidden';
+        }
+
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a link
+        menuLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    }
+
+    // ============================================
+    // GALLERY LIGHTBOX
+    // ============================================
+    function initLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox?.querySelector('.lightbox__img');
+        const lightboxClose = lightbox?.querySelector('.lightbox__close');
+        const lightboxPrev = lightbox?.querySelector('.lightbox__prev');
+        const lightboxNext = lightbox?.querySelector('.lightbox__next');
+        const galleryItems = document.querySelectorAll('.gallery__item');
+
+        if (!lightbox || !galleryItems.length) return;
+
+        let currentIndex = 0;
+        const images = Array.from(galleryItems).map(item => {
+            const img = item.querySelector('.gallery__img');
+            return {
+                src: img?.src || '',
+                alt: img?.alt || ''
+            };
+        });
+
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightboxImage();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightboxImage() {
+            if (lightboxImg && images[currentIndex]) {
+                lightboxImg.src = images[currentIndex].src;
+                lightboxImg.alt = images[currentIndex].alt;
             }
         }
-    }
 
-    /**
-     * Handle sticky header on scroll
-     */
-    function handleScroll() {
-        if (window.scrollY > 100) {
-            header.classList.add('header--scrolled');
-        } else {
-            header.classList.remove('header--scrolled');
+        function showPrevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateLightboxImage();
         }
-    }
 
-    /**
-     * Smooth scroll to anchor links
-     */
-    function handleAnchorClick(event) {
-        const target = event.target.closest('a[href^="#"]');
-        
-        if (target) {
-            const targetId = target.getAttribute('href');
-            
-            if (targetId && targetId !== '#') {
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    event.preventDefault();
-                    
-                    // Close mobile menu if open
-                    mainNav.classList.remove('header__nav--open');
-                    
-                    // Scroll to target with offset for fixed header
-                    const headerHeight = header.offsetHeight;
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+        function showNextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateLightboxImage();
+        }
+
+        // Event listeners
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => openLightbox(index));
+
+            // Keyboard accessibility
+            item.setAttribute('tabindex', '0');
+            item.setAttribute('role', 'button');
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openLightbox(index);
+                }
+            });
+        });
+
+        if (lightboxClose) {
+            lightboxClose.addEventListener('click', closeLightbox);
+        }
+
+        if (lightboxPrev) {
+            lightboxPrev.addEventListener('click', showPrevImage);
+        }
+
+        if (lightboxNext) {
+            lightboxNext.addEventListener('click', showNextImage);
+        }
+
+        // Click outside to close
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.classList.contains('lightbox__content')) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+
+            switch (e.key) {
+                case 'Escape':
+                    closeLightbox();
+                    break;
+                case 'ArrowLeft':
+                    showPrevImage();
+                    break;
+                case 'ArrowRight':
+                    showNextImage();
+                    break;
+            }
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        lightbox.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        lightbox.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchEndX - touchStartX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    showPrevImage();
+                } else {
+                    showNextImage();
                 }
             }
         }
     }
 
-    /**
-     * Initialize event listeners
-     */
-    function init() {
-        // Mobile menu toggle
-        if (menuToggle) {
-            menuToggle.addEventListener('click', toggleMobileMenu);
-        }
+    // ============================================
+    // SMOOTH SCROLLING
+    // ============================================
+    function initSmoothScroll() {
+        const anchorLinks = document.querySelectorAll('a[href^="#"]');
 
-        // Close menu on outside click
-        document.addEventListener('click', handleOutsideClick);
+        anchorLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
 
-        // Sticky header on scroll
-        window.addEventListener('scroll', handleScroll, { passive: true });
+                // Skip if it's just "#" or empty
+                if (!href || href === '#') return;
 
-        // Smooth scroll for anchor links
-        document.addEventListener('click', handleAnchorClick);
+                const target = document.querySelector(href);
 
-        // Check initial scroll position
-        handleScroll();
+                if (target) {
+                    e.preventDefault();
 
-        // Close mobile menu on window resize (if switching to desktop)
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768 && mainNav.classList.contains('header__nav--open')) {
-                mainNav.classList.remove('header__nav--open');
-            }
+                    const headerHeight = document.getElementById('header')?.offsetHeight || 0;
+                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     }
 
-    // Initialize when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        init();
+    // ============================================
+    // OPTIONAL: Parallax effect for hero (subtle)
+    // ============================================
+    function initParallax() {
+        const hero = document.querySelector('.hero');
+        const heroImage = document.querySelector('.hero__bg-image');
+        const heroCharacters = document.querySelector('.hero__characters');
+
+        if (!hero || !heroImage) return;
+
+        let ticking = false;
+
+        function updateParallax() {
+            const scrollY = window.scrollY;
+            const heroHeight = hero.offsetHeight;
+
+            if (scrollY < heroHeight) {
+                const parallaxValue = scrollY * 0.3;
+                heroImage.style.transform = `translateY(${parallaxValue}px) scale(1.1)`;
+
+                if (heroCharacters) {
+                    heroCharacters.style.transform = `translateY(${scrollY * 0.1}px)`;
+                }
+            }
+
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }, { passive: true });
     }
+
+    // Uncomment to enable parallax
+    // document.addEventListener('DOMContentLoaded', initParallax);
 
 })();
