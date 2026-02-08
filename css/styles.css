@@ -455,7 +455,7 @@ ol {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 30%;
+    object-position: center 60%;
 }
 
 .hero__overlay {
@@ -463,7 +463,7 @@ ol {
     inset: 0;
     background: radial-gradient(ellipse at center bottom,
             transparent 0%,
-            var(--color-navy-900) 70%);
+            var(--color-navy-900) 80%);
     z-index: 3;
 }
 
