@@ -238,8 +238,9 @@
                 </div>
 
                 <div class="gallery__grid">
-                    <div class="gallery__item gallery__item--large reveal">
-                        <img src="assets/images/segeljungs_000_c_Filmwelt.avif" alt="Film Still 1" class="gallery__img">
+                    <div class="gallery__item gallery__item--banner reveal">
+                        <img src="assets/images/segeljungs_000_c_Filmwelt.avif"
+                            alt="Segeljungs mit null Ahnung um die Welt" class="gallery__img">
                         <div class="gallery__item-overlay"></div>
                     </div>
                     <div class="gallery__item reveal reveal--delay-1">
@@ -254,7 +255,7 @@
                         <img src="assets/images/segeljungs_017_c_Filmwelt.avif" alt="Film Still 4" class="gallery__img">
                         <div class="gallery__item-overlay"></div>
                     </div>
-                    <div class="gallery__item gallery__item--wide reveal reveal--delay-1">
+                    <div class="gallery__item reveal reveal--delay-1">
                         <img src="assets/images/segeljungs_006_c_Filmwelt.avif" alt="Film Still 5" class="gallery__img">
                         <div class="gallery__item-overlay"></div>
                     </div>
@@ -268,6 +269,10 @@
                     </div>
                     <div class="gallery__item reveal reveal--delay-1">
                         <img src="assets/images/Segeljung-024.avif" alt="Film Still 8" class="gallery__img">
+                        <div class="gallery__item-overlay"></div>
+                    </div>
+                    <div class="gallery__item gallery__item--banner gallery__item--kino reveal reveal--delay-2">
+                        <img src="assets/images/Segeljungs Kinofilm Titel.png" alt="Nur im Kino" class="gallery__img">
                         <div class="gallery__item-overlay"></div>
                     </div>
                 </div>
@@ -308,31 +313,58 @@
                     </p>
                 </div>
 
-                <div class="journey__route reveal reveal--delay-1">
-                    <div class="journey__route-line">
-                        <div class="journey__route-point" data-label="Ostsee">
-                            <span class="journey__route-dot"></span>
+                <div class="journey__world-route reveal reveal--delay-1">
+                    <div class="journey__globe">
+                        <svg class="journey__globe-svg" viewBox="0 0 400 400">
+                            <circle class="journey__globe-circle" cx="200" cy="200" r="150" fill="none"
+                                stroke="url(#brushGradient)" stroke-width="8" stroke-linecap="round"
+                                stroke-dasharray="15,8" />
+                            <path class="journey__route-path"
+                                d="M50,200 Q100,100 200,80 Q300,60 350,200 Q300,340 200,320 Q100,300 50,200" fill="none"
+                                stroke="url(#routeGradient)" stroke-width="4" stroke-linecap="round"
+                                stroke-dasharray="12,6" />
+                            <defs>
+                                <linearGradient id="brushGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="rgba(46, 125, 196, 0.3)" />
+                                    <stop offset="50%" stop-color="rgba(46, 125, 196, 0.6)" />
+                                    <stop offset="100%" stop-color="rgba(46, 125, 196, 0.3)" />
+                                </linearGradient>
+                                <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#e67e22" />
+                                    <stop offset="50%" stop-color="#2d7dc4" />
+                                    <stop offset="100%" stop-color="#e67e22" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="journey__stops">
+                            <div class="journey__stop" style="--angle: 180deg; --delay: 0s;"><span
+                                    class="journey__stop-dot"></span><span class="journey__stop-label">Ostsee</span>
+                            </div>
+                            <div class="journey__stop" style="--angle: 225deg; --delay: 0.1s;"><span
+                                    class="journey__stop-dot"></span><span class="journey__stop-label">Atlantik</span>
+                            </div>
+                            <div class="journey__stop" style="--angle: 270deg; --delay: 0.2s;"><span
+                                    class="journey__stop-dot"></span><span class="journey__stop-label">Karibik</span>
+                            </div>
+                            <div class="journey__stop" style="--angle: 315deg; --delay: 0.3s;"><span
+                                    class="journey__stop-dot"></span><span class="journey__stop-label">Pazifik</span>
+                            </div>
+                            <div class="journey__stop" style="--angle: 0deg; --delay: 0.4s;"><span
+                                    class="journey__stop-dot"></span><span class="journey__stop-label">Südsee</span>
+                            </div>
+                            <div class="journey__stop" style="--angle: 45deg; --delay: 0.5s;"><span
+                                    class="journey__stop-dot"></span><span class="journey__stop-label">Asien</span>
+                            </div>
+                            <div class="journey__stop" style="--angle: 90deg; --delay: 0.6s;"><span
+                                    class="journey__stop-dot"></span><span class="journey__stop-label">Ind. Ozean</span>
+                            </div>
+                            <div class="journey__stop" style="--angle: 135deg; --delay: 0.7s;"><span
+                                    class="journey__stop-dot"></span><span class="journey__stop-label">Europa</span>
+                            </div>
                         </div>
-                        <div class="journey__route-point" data-label="Atlantik">
-                            <span class="journey__route-dot"></span>
-                        </div>
-                        <div class="journey__route-point" data-label="Karibik">
-                            <span class="journey__route-dot"></span>
-                        </div>
-                        <div class="journey__route-point" data-label="Pazifik">
-                            <span class="journey__route-dot"></span>
-                        </div>
-                        <div class="journey__route-point" data-label="Südsee">
-                            <span class="journey__route-dot"></span>
-                        </div>
-                        <div class="journey__route-point" data-label="Asien">
-                            <span class="journey__route-dot"></span>
-                        </div>
-                        <div class="journey__route-point" data-label="Ind. Ozean">
-                            <span class="journey__route-dot"></span>
-                        </div>
-                        <div class="journey__route-point" data-label="Europa">
-                            <span class="journey__route-dot"></span>
+                        <div class="journey__center">
+                            <span class="journey__center-text">🌍</span>
+                            <span class="journey__center-subtitle">Um die Welt</span>
                         </div>
                     </div>
                 </div>
@@ -343,7 +375,6 @@
         <section class="facts" id="facts">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="section-label">Der Film</span>
                     <h2 class="section-title">Die Fakten</h2>
                 </div>
 
@@ -502,8 +533,7 @@
             <div class="footer__grid">
                 <div class="footer__brand">
                     <img src="assets/images/Segeljungs Kinofilm Schriftzug weiß.png" alt="Segeljungs"
-                        class="footer__logo">
-                    <p class="footer__tagline">Mit null Ahnung um die Welt</p>
+                        class="footer__logo footer__logo--large">
                 </div>
 
                 <div class="footer__social">
