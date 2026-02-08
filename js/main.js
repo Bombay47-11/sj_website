@@ -25,6 +25,7 @@
         initHeader();
         initMobileMenu();
         initFilmstripLightbox();
+        initGalleryNav();
         initSmoothScroll();
     }
 
@@ -379,5 +380,56 @@
 
     // Uncomment to enable parallax
     // document.addEventListener('DOMContentLoaded', initParallax);
+
+    // ============================================
+    // GALLERY NAVIGATION
+    // ============================================
+    function initGalleryNav() {
+        const filmstrip = document.getElementById('filmstrip');
+        const prevBtn = document.querySelector('.gallery__nav-btn--prev');
+        const nextBtn = document.querySelector('.gallery__nav-btn--next');
+
+        if (!filmstrip || !prevBtn || !nextBtn) return;
+
+        function updateButtons() {
+            const scrollLeft = filmstrip.scrollLeft;
+            const maxScroll = filmstrip.scrollWidth - filmstrip.clientWidth;
+
+            // Allow some tolerance (1px)
+            prevBtn.disabled = scrollLeft <= 1;
+            nextBtn.disabled = scrollLeft >= maxScroll - 1;
+        }
+
+        function scrollGallery(direction) {
+            const firstItem = filmstrip.querySelector('.gallery__frame');
+            if (!firstItem) return;
+
+            const itemWidth = firstItem.offsetWidth;
+            // Get gap from computed style
+            const style = window.getComputedStyle(filmstrip);
+            const gap = parseFloat(style.gap) || 32; // Default 2rem if not found
+
+            const scrollAmount = itemWidth + gap;
+
+            filmstrip.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        prevBtn.addEventListener('click', () => scrollGallery(-1));
+        nextBtn.addEventListener('click', () => scrollGallery(1));
+
+        filmstrip.addEventListener('scroll', () => {
+            // Debounce or throttle could be good, but direct update is responsive
+            updateButtons();
+        }, { passive: true });
+
+        window.addEventListener('resize', updateButtons);
+
+        // Initial check
+        // Wait a tick for layout
+        setTimeout(updateButtons, 100);
+    }
 
 })();
