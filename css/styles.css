@@ -233,62 +233,7 @@ ol {
             transparent 100%);
 }
 
-/* Hero Characters Cutout (Separate) */
-.hero__cutouts {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    /* Low z-index */
-    pointer-events: none;
-    overflow: hidden;
-}
 
-.hero__cutout {
-    position: absolute;
-    top: 55%;
-    transform: translateY(-50%);
-
-    /* Responsive Sizing */
-    width: clamp(200px, 25vw, 500px);
-    height: auto;
-    max-height: 70vh;
-
-    /* Subtle Blending */
-    opacity: 0.85;
-    mix-blend-mode: soft-light;
-    filter: brightness(0.9) contrast(1.1) saturate(0.8);
-    transition: all var(--transition-slow);
-}
-
-.hero__cutout--left {
-    left: 0;
-    object-position: left center;
-    /* Optional: pull slightly left if image has padding */
-    transform: translateY(-50%) translateX(-5%);
-}
-
-.hero__cutout--right {
-    right: 0;
-    object-position: right center;
-    transform: translateY(-50%) translateX(5%);
-}
-
-/* Mobile: Adjust positioning */
-@media (max-width: 768px) {
-    .hero__cutout {
-        height: 50vh;
-        top: 60%;
-        opacity: 0.6;
-    }
-
-    .hero__cutout--left {
-        left: -10%;
-    }
-
-    .hero__cutout--right {
-        right: -10%;
-    }
-}
 
 
 
