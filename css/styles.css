@@ -993,6 +993,17 @@ ol {
     opacity: 1;
 }
 
+/* Full width banner image */
+.gallery__item--banner {
+    grid-column: 1 / -1;
+}
+
+.gallery__item--banner .gallery__img {
+    aspect-ratio: 3 / 1;
+    object-fit: cover;
+    object-position: center;
+}
+
 /* Centered item in last row */
 .gallery__item--centered {
     grid-column: 2 / 3;
@@ -1005,6 +1016,10 @@ ol {
 
     .gallery__item--centered {
         grid-column: 1 / -1;
+    }
+
+    .gallery__item--banner .gallery__img {
+        aspect-ratio: 2 / 1;
     }
 }
 
