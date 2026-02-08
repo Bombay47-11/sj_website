@@ -303,73 +303,10 @@
                     </p>
                 </div>
 
-                <div class="journey__world-route reveal reveal--delay-1">
-                    <div class="journey__map">
-                        <!-- Geographic route with brush stroke arrows -->
-                        <svg class="journey__map-svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
-                            <!-- Brush stroke path connecting all points -->
-                            <defs>
-                                <marker id="brushArrow" markerWidth="12" markerHeight="12" refX="10" refY="6"
-                                    orient="auto">
-                                    <path d="M0,0 L12,6 L0,12 L3,6 Z" fill="#e67e22" />
-                                </marker>
-                                <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stop-color="#e67e22" />
-                                    <stop offset="50%" stop-color="#2d7dc4" />
-                                    <stop offset="100%" stop-color="#e67e22" />
-                                </linearGradient>
-                            </defs>
-
-                            <!-- Animated brush stroke route path -->
-                            <path class="journey__brush-path" d="M120,120 C160,140 200,180 240,200 
-                                   C280,220 340,230 400,220 
-                                   C460,210 520,180 580,160 
-                                   C620,150 660,140 700,130
-                                   C720,125 740,150 720,180
-                                   C680,220 620,260 540,280
-                                   C460,300 380,290 300,260
-                                   C220,230 160,180 120,140" fill="none" stroke="url(#pathGradient)" stroke-width="4"
-                                stroke-linecap="round" stroke-dasharray="12,8" marker-end="url(#brushArrow)" />
-                        </svg>
-
-                        <!-- Geographic stops positioned correctly -->
-                        <div class="journey__geo-stops">
-                            <div class="journey__geo-stop" style="left: 15%; top: 25%;">
-                                <span class="journey__geo-dot"></span>
-                                <span class="journey__geo-label">Ostsee</span>
-                            </div>
-                            <div class="journey__geo-stop" style="left: 25%; top: 50%;">
-                                <span class="journey__geo-dot"></span>
-                                <span class="journey__geo-label">Atlantik</span>
-                            </div>
-                            <div class="journey__geo-stop" style="left: 40%; top: 55%;">
-                                <span class="journey__geo-dot"></span>
-                                <span class="journey__geo-label">Karibik</span>
-                            </div>
-                            <div class="journey__geo-stop" style="left: 55%; top: 45%;">
-                                <span class="journey__geo-dot"></span>
-                                <span class="journey__geo-label">Pazifik</span>
-                            </div>
-                            <div class="journey__geo-stop" style="left: 70%; top: 35%;">
-                                <span class="journey__geo-dot"></span>
-                                <span class="journey__geo-label">Südsee</span>
-                            </div>
-                            <div class="journey__geo-stop" style="left: 82%; top: 30%;">
-                                <span class="journey__geo-dot"></span>
-                                <span class="journey__geo-label">Asien</span>
-                            </div>
-                            <div class="journey__geo-stop" style="left: 75%; top: 60%;">
-                                <span class="journey__geo-dot"></span>
-                                <span class="journey__geo-label">Ind. Ozean</span>
-                            </div>
-                            <div class="journey__geo-stop" style="left: 20%; top: 30%;">
-                                <span class="journey__geo-dot journey__geo-dot--end"></span>
-                                <span class="journey__geo-label">Europa</span>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Background Map Image -->
+                <div class="journey__background">
+                    <img src="assets/images/Hintergrund Karten.png" alt="Weltkarte" class="journey__bg-image">
                 </div>
-            </div>
         </section>
 
         <!-- Facts Section -->
