@@ -1001,12 +1001,18 @@ ol {
 .gallery__item--banner .gallery__img {
     aspect-ratio: 3 / 1;
     object-fit: cover;
-    object-position: center bottom;
+    object-position: center 70%;
 }
 
 /* Centered item in last row */
 .gallery__item--centered {
     grid-column: 2 / 3;
+}
+
+.gallery__item--centered .gallery__img {
+    aspect-ratio: auto;
+    object-fit: contain;
+    max-height: 400px;
 }
 
 @media (max-width: 640px) {
