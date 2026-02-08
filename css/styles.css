@@ -233,57 +233,58 @@ ol {
             transparent 100%);
 }
 
-/* Hero Characters Cutout (Split) */
-.hero__characters-container {
+/* Hero Characters Cutout (Separate) */
+.hero__cutouts {
     position: absolute;
     inset: 0;
-    z-index: 4;
-    /* Behind content (5), above overlay (3) */
+    z-index: 2;
+    /* Low z-index */
     pointer-events: none;
     overflow: hidden;
 }
 
-.hero__char-wrapper {
+.hero__cutout {
     position: absolute;
     top: 55%;
     transform: translateY(-50%);
-    height: 85%;
+    height: 80vh;
     width: auto;
-    display: flex;
-    align-items: center;
+    max-width: 45vw;
 
-    /* Cinematic Blending */
-    opacity: 0.9;
+    /* Blending */
+    opacity: 0.85;
     filter: brightness(0.9) contrast(1.05) saturate(0.9);
     transition: all var(--transition-slow);
 }
 
-.hero__char-wrapper--left {
-    left: 12%;
-    justify-content: flex-start;
+.hero__cutout--left {
+    left: 0;
+    object-position: left center;
+    /* Optional: pull slightly left if image has padding */
+    transform: translateY(-50%) translateX(-5%);
 }
 
-.hero__char-wrapper--right {
-    right: 12%;
-    justify-content: flex-end;
+.hero__cutout--right {
+    right: 0;
+    object-position: right center;
+    transform: translateY(-50%) translateX(5%);
 }
 
-.hero__char-img {
-    height: 100%;
-    width: auto;
-    max-width: none;
-    filter: drop-shadow(0 10px 40px rgba(0, 0, 0, 0.4));
-}
+/* Mobile: Adjust positioning */
+@media (max-width: 768px) {
+    .hero__cutout {
+        height: 50vh;
+        top: 60%;
+        opacity: 0.6;
+    }
 
-/* Crop the image to show left/right person */
-.hero__char-wrapper--left .hero__char-img {
-    clip-path: inset(0 45% 0 0);
-    transform: translateX(-5%);
-}
+    .hero__cutout--left {
+        left: -10%;
+    }
 
-.hero__char-wrapper--right .hero__char-img {
-    clip-path: inset(0 0 0 45%);
-    transform: translateX(5%);
+    .hero__cutout--right {
+        right: -10%;
+    }
 }
 
 /* Mobile: Adjust positioning */
@@ -414,13 +415,17 @@ ol {
     padding: 0 var(--space-6);
 }
 
+
 .header__logo-img {
-    height: 32px;
+    height: 48px;
+    /* Increased from 32px */
     width: auto;
+    transition: height var(--transition-base);
 }
 
 .header__logo-img--large {
-    height: 56px;
+    height: 90px;
+    /* Increased from 56px */
 }
 
 .header__nav {
