@@ -1773,10 +1773,11 @@ body::before {
 /* ============================================
    RESPONSIVE UTILITIES
    ============================================ */
-:root {
-    --space-24: 4rem;
-    --space-32: 5rem;
-}
+@media (max-width: 640px) {
+    :root {
+        --space-24: 4rem;
+        --space-32: 5rem;
+    }
 }
 
 /* Trailer Texture Overlay */
