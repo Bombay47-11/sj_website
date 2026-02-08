@@ -1,0 +1,7 @@
+# Ignore large image files
+*.tif
+*.tiff
+
+# macOS system files
+.DS_Store
+**/.DS_Store
