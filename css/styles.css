@@ -1119,12 +1119,11 @@ ol {
     display: none;
 }
 
-.gallery__scroller {
+.gallery__filmstrip {
     display: flex;
     gap: var(--space-6);
     padding: 0 var(--space-8);
     width: max-content;
-    /* Ensure items don't wrap and scroll */
 }
 
 .gallery__frame {
@@ -1231,7 +1230,7 @@ ol {
         height: 280px;
     }
 
-    .gallery__scroller {
+    .gallery__filmstrip {
         padding: 0 var(--space-4);
     }
 }
@@ -1766,13 +1765,11 @@ body::before {
 }
 
 /* Gallery Navigation */
-/* Gallery Navigation */
-.gallery__wrap {
+.gallery__filmstrip-wrapper {
     position: relative;
-    /* Arrows live here, absolute */
 }
 
-.gallery__arrow {
+.gallery__nav-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -1786,46 +1783,40 @@ body::before {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 50;
-    /* Above scroller */
+    z-index: 10;
     transition: all var(--transition-base);
     backdrop-filter: blur(4px);
     opacity: 0;
-    /* Hidden by default */
+    /* Hidden by default, shown on hover/focus/JS */
 }
 
-.gallery__wrap:hover .gallery__arrow {
+.gallery__filmstrip-wrapper:hover .gallery__nav-btn {
     opacity: 1;
 }
 
-.gallery__arrow:hover {
+.gallery__nav-btn:hover {
     background: var(--color-ocean-600);
     transform: translateY(-50%) scale(1.1);
 }
 
-.gallery__arrow:disabled,
-.gallery__arrow[disabled] {
+.gallery__nav-btn:disabled,
+.gallery__nav-btn[disabled] {
     opacity: 0.3 !important;
     cursor: not-allowed;
     background: rgba(10, 22, 40, 0.5);
 }
 
-.gallery__arrow--prev {
-    left: 18px;
+.gallery__nav-btn--prev {
+    left: 24px;
 }
 
-.gallery__arrow--next {
-    right: 18px;
+.gallery__nav-btn--next {
+    right: 24px;
 }
 
 @media (max-width: 768px) {
-    .gallery__arrow {
+    .gallery__nav-btn {
         display: none;
-        /* Hide on mobile */
-    }
-
-    .gallery__scroller {
-        padding-left: var(--space-6);
-        padding-right: var(--space-6);
+        /* Hide on mobile, use swipe */
     }
 }
