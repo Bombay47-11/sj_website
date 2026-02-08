@@ -534,6 +534,17 @@ ol {
     margin-bottom: var(--space-6);
 }
 
+.hero__title-image {
+    margin-bottom: var(--space-6);
+    text-align: center;
+}
+
+.hero__title-img {
+    max-width: 100%;
+    width: 600px;
+    height: auto;
+}
+
 .hero__title-small {
     display: block;
     font-family: var(--font-primary);
