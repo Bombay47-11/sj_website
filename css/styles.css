@@ -208,11 +208,13 @@ ol {
 }
 
 /* Section Fade Transitions */
+/* Soft Cinematic Fades */
 .section-fade {
     position: absolute;
     left: 0;
     right: 0;
-    height: 150px;
+    height: 25rem;
+    /* Increased for softer transition */
     pointer-events: none;
     z-index: 10;
 }
@@ -232,6 +234,21 @@ ol {
             var(--color-navy-900) 20%,
             transparent 100%);
 }
+
+/* Starry Background Specific Softener */
+.mindset {
+    mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 15rem,
+            black calc(100% - 15rem),
+            transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 15rem,
+            black calc(100% - 15rem),
+            transparent 100%);
+}
+
 
 
 
@@ -1702,4 +1719,14 @@ body::before {
         --space-24: 4rem;
         --space-32: 5rem;
     }
+}
+
+/* Ensure sections accommodate absolute fade elements */
+.trailer,
+.story,
+.mindset,
+.gallery,
+.journey,
+.facts {
+    position: relative;
 }
