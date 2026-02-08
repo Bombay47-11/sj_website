@@ -290,22 +290,7 @@ ol {
     }
 }
 
-/* Mobile: Adjust positioning */
-@media (max-width: 768px) {
-    .hero__char-wrapper {
-        height: 60%;
-        top: 60%;
-        opacity: 0.6;
-    }
 
-    .hero__char-wrapper--left {
-        left: -10%;
-    }
-
-    .hero__char-wrapper--right {
-        right: -10%;
-    }
-}
 
 /* Button Glow Enhancement */
 .btn--glow {
