@@ -1001,7 +1001,7 @@ ol {
 .gallery__item--banner .gallery__img {
     aspect-ratio: 3 / 1;
     object-fit: cover;
-    object-position: center;
+    object-position: center bottom;
 }
 
 /* Centered item in last row */
