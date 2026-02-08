@@ -227,8 +227,14 @@
 
         <!-- Gallery Section - Filmstrip Style -->
         <section class="gallery" id="gallery">
-            <div class="gallery__filmstrip-wrapper">
-                <div class="gallery__filmstrip" id="filmstrip">
+            <div class="gallery__wrap">
+                <button class="gallery__arrow gallery__arrow--prev" aria-label="Previous images">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                </button>
+
+                <div class="gallery__scroller" id="galleryScroller">
                     <div class="gallery__frame gallery__frame--large reveal">
                         <img src="assets/images/segeljungs_001_c_Filmwelt.avif" alt="Segeljungs" class="gallery__img">
                         <div class="gallery__border"></div>
@@ -263,13 +269,7 @@
                     </div>
                 </div>
 
-                <!-- Navigation Buttons -->
-                <button class="gallery__nav-btn gallery__nav-btn--prev" aria-label="Vorheriges Bild">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M15 18l-6-6 6-6" />
-                    </svg>
-                </button>
-                <button class="gallery__nav-btn gallery__nav-btn--next" aria-label="Nächstes Bild">
+                <button class="gallery__arrow gallery__arrow--next" aria-label="Next images">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M9 18l6-6-6-6" />
                     </svg>
