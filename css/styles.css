@@ -513,12 +513,25 @@ ol {
 }
 
 @media (min-width: 768px) {
+    .header__container {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        justify-content: unset;
+    }
+
+    .header__brand {
+        justify-self: start;
+    }
+
     .header__nav {
         display: block;
+        justify-self: center;
     }
 
     .header__cta {
         display: inline-flex;
+        justify-self: end;
     }
 
     .header__menu-toggle {
@@ -1701,5 +1714,48 @@ body::before {
     :root {
         --space-24: 4rem;
         --space-32: 5rem;
+    }
+}
+
+/* Header Social Buttons */
+.header__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.header__social {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.social-btn--header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: var(--color-gray-400);
+    transition: all var(--transition-fast);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.social-btn--header:hover {
+    color: var(--color-white);
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+    .header__brand {
+        gap: var(--space-2);
+    }
+
+    .social-btn--header {
+        width: 28px;
+        height: 28px;
+        padding: 4px;
     }
 }
