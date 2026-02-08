@@ -26,6 +26,7 @@
         initMobileMenu();
         initFilmstripLightbox();
         initSmoothScroll();
+        initRouteAnimation();
     }
 
     // ============================================
@@ -298,42 +299,33 @@
         }, { passive: true });
 
         function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchEndX - touchStartX;
-
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    showPrevImage();
-                } else {
-                    showNextImage();
-                }
+            if (touchEndX < touchStartX - 50) {
+                showNextImage();
+            } else if (touchEndX > touchStartX + 50) {
+                showPrevImage();
             }
         }
     }
 
     // ============================================
-    // SMOOTH SCROLLING
+    // SMOOTH SCROLL
     // ============================================
     function initSmoothScroll() {
-        const anchorLinks = document.querySelectorAll('a[href^="#"]');
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
 
-        anchorLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const href = link.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    if (mobileMenu && mobileMenu.classList.contains('active')) {
+                        document.getElementById('menuToggle').click();
+                    }
 
-                // Skip if it's just "#" or empty
-                if (!href || href === '#') return;
-
-                const target = document.querySelector(href);
-
-                if (target) {
-                    e.preventDefault();
-
-                    const headerHeight = document.getElementById('header')?.offsetHeight || 0;
-                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
-
-                    window.scrollTo({
-                        top: targetPosition,
+                    targetElement.scrollIntoView({
                         behavior: 'smooth'
                     });
                 }
@@ -342,42 +334,170 @@
     }
 
     // ============================================
-    // OPTIONAL: Parallax effect for hero (subtle)
+    // ROUTE ANIMATION (Scroll-Linked SVG)
     // ============================================
-    function initParallax() {
-        const hero = document.querySelector('.hero');
-        const heroImage = document.querySelector('.hero__bg-image');
-        const heroCharacters = document.querySelector('.hero__characters');
+    function initRouteAnimation() {
+        const routeHero = document.getElementById('route-hero');
+        const path = document.getElementById('routePath');
+        const markers = document.querySelectorAll('.route-marker');
 
-        if (!hero || !heroImage) return;
+        if (!routeHero || !path) return;
+
+        // Get path length
+        const length = path.getTotalLength();
+
+        // Set up initial state (hidden)
+        path.style.strokeDasharray = length;
+        path.style.strokeDashoffset = length;
 
         let ticking = false;
 
-        function updateParallax() {
-            const scrollY = window.scrollY;
-            const heroHeight = hero.offsetHeight;
+        function updateRoute() {
+            const rect = routeHero.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
 
-            if (scrollY < heroHeight) {
-                const parallaxValue = scrollY * 0.3;
-                heroImage.style.transform = `translateY(${parallaxValue}px) scale(1.1)`;
+            // Calculate progress
+            // Start when top hits bottom of screen? No, start when element enters.
+            // Let's say we want it to draw as we scroll past it.
+            // Start: rect.top < windowHeight
+            // End: rect.bottom < windowHeight (fully scrolled past?) or rect.top < 0
 
-                if (heroCharacters) {
-                    heroCharacters.style.transform = `translateY(${scrollY * 0.1}px)`;
+            // Adjust start/end so it draws while visible
+            const start = windowHeight * 0.8; // Start drawing when top is 80% down
+            const end = windowHeight * 0.2;   // Finish when top is 20% down
+
+            // Actually, better:
+            // progress 0 at rect.top = windowHeight
+            // progress 1 at rect.bottom = 0 (scrolled fully past)
+            // But we want it to finish while visible.
+
+            // Let's try:
+            // 0% when element top enters viewport
+            // 100% when element top is at 20% of viewport (near top)
+
+            const elementTop = rect.top;
+            const elementHeight = rect.height;
+
+            // Simple progress based on scroll position relative to element
+            // progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+            // This goes 0 -> 1 as it traverses the entire screen.
+
+            let progress = (windowHeight - rect.top) / (windowHeight + (rect.height * 0.5));
+
+            // Clamp
+            progress = Math.max(0, Math.min(1, progress));
+
+            // Easing? Linear is fine for scroll-linked.
+
+            // Update dash offset
+            const drawLength = length * progress;
+            path.style.strokeDashoffset = length - drawLength;
+
+            // Update markers
+            markers.forEach(marker => {
+                const threshold = parseFloat(marker.dataset.threshold) || 0;
+                if (progress > threshold) {
+                    marker.classList.add('visible');
+                } else {
+                    marker.classList.remove('visible');
                 }
-            }
+            });
 
             ticking = false;
         }
 
         window.addEventListener('scroll', () => {
             if (!ticking) {
-                window.requestAnimationFrame(updateParallax);
+                window.requestAnimationFrame(updateRoute);
                 ticking = true;
             }
         }, { passive: true });
+
+        // Initial call
+        updateRoute();
     }
+
+})();
+const swipeThreshold = 50;
+const diff = touchEndX - touchStartX;
+
+if (Math.abs(diff) > swipeThreshold) {
+    if (diff > 0) {
+        showPrevImage();
+    } else {
+        showNextImage();
+    }
+}
+        }
+    }
+
+// ============================================
+// SMOOTH SCROLLING
+// ============================================
+function initSmoothScroll() {
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+
+    anchorLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+
+            // Skip if it's just "#" or empty
+            if (!href || href === '#') return;
+
+            const target = document.querySelector(href);
+
+            if (target) {
+                e.preventDefault();
+
+                const headerHeight = document.getElementById('header')?.offsetHeight || 0;
+                const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// ============================================
+// OPTIONAL: Parallax effect for hero (subtle)
+// ============================================
+function initParallax() {
+    const hero = document.querySelector('.hero');
+    const heroImage = document.querySelector('.hero__bg-image');
+    const heroCharacters = document.querySelector('.hero__characters');
+
+    if (!hero || !heroImage) return;
+
+    let ticking = false;
+
+    function updateParallax() {
+        const scrollY = window.scrollY;
+        const heroHeight = hero.offsetHeight;
+
+        if (scrollY < heroHeight) {
+            const parallaxValue = scrollY * 0.3;
+            heroImage.style.transform = `translateY(${parallaxValue}px) scale(1.1)`;
+
+            if (heroCharacters) {
+                heroCharacters.style.transform = `translateY(${scrollY * 0.1}px)`;
+            }
+        }
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }, { passive: true });
+}
 
     // Uncomment to enable parallax
     // document.addEventListener('DOMContentLoaded', initParallax);
 
-})();
+}) ();
