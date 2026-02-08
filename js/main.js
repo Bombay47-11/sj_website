@@ -1,12 +1,13 @@
 /**
  * SEGELJUNGS - NUR IM KINO
- * Main JavaScript
+ * Main JavaScript - Cinematic Edition
  * 
  * Features:
- * - Scroll reveal animations (IntersectionObserver)
+ * - Scroll reveal animations (IntersectionObserver) - bidirectional
+ * - Parallax effects
  * - Header scroll behavior
  * - Mobile menu toggle
- * - Gallery lightbox
+ * - Gallery filmstrip with lightbox
  * - Smooth scrolling for anchor links
  */
 
@@ -20,14 +21,15 @@
 
     function init() {
         initScrollReveal();
+        initParallax();
         initHeader();
         initMobileMenu();
-        initLightbox();
+        initFilmstripLightbox();
         initSmoothScroll();
     }
 
     // ============================================
-    // SCROLL REVEAL ANIMATIONS
+    // SCROLL REVEAL ANIMATIONS (Bidirectional)
     // ============================================
     function initScrollReveal() {
         const revealElements = document.querySelectorAll('.reveal');
@@ -43,21 +45,65 @@
 
         const observerOptions = {
             root: null,
-            rootMargin: '0px 0px -50px 0px',
-            threshold: 0.1
+            rootMargin: '0px 0px -80px 0px',
+            threshold: 0.15
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
+                // Bidirectional: add/remove visible class based on intersection
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    // Optional: unobserve after revealing for performance
-                    observer.unobserve(entry.target);
+                } else {
+                    // Only remove if scrolled above (for scroll-back effect)
+                    const rect = entry.boundingClientRect;
+                    if (rect.top > 0) {
+                        entry.target.classList.remove('visible');
+                    }
                 }
             });
         }, observerOptions);
 
         revealElements.forEach(el => observer.observe(el));
+    }
+
+    // ============================================
+    // PARALLAX EFFECTS
+    // ============================================
+    function initParallax() {
+        const parallaxElements = document.querySelectorAll('[data-parallax]');
+
+        if (!parallaxElements.length) return;
+
+        let ticking = false;
+
+        function updateParallax() {
+            const scrollY = window.scrollY;
+
+            parallaxElements.forEach(el => {
+                const speed = parseFloat(el.dataset.parallax) || 0.3;
+                const rect = el.getBoundingClientRect();
+                const elementTop = rect.top + scrollY;
+
+                // Only apply parallax when element is in or near viewport
+                if (scrollY < elementTop + rect.height + 200) {
+                    const yPos = (scrollY - elementTop) * speed;
+                    el.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                }
+            });
+
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }, { passive: true });
+
+        // Initial call
+        updateParallax();
     }
 
     // ============================================

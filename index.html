@@ -69,10 +69,13 @@
     <main>
         <!-- Hero Section -->
         <section class="hero" id="hero">
+            <!-- Cinematic grain overlay -->
+            <div class="grain-overlay"></div>
+
             <div class="hero__background">
                 <div class="hero__gradient"></div>
                 <img src="assets/images/ARRYA Cover Bild.avif" alt="Segelboot ARRYA auf dem Ozean"
-                    class="hero__bg-image">
+                    class="hero__bg-image" data-parallax="0.3">
                 <div class="hero__overlay"></div>
                 <!-- Decorative route line -->
                 <svg class="hero__route-line" viewBox="0 0 1200 800" preserveAspectRatio="none">
@@ -97,7 +100,7 @@
                 </p>
 
                 <div class="hero__cta-group reveal reveal--delay-3">
-                    <a href="#tickets" class="btn btn--primary btn--large">
+                    <a href="#tickets" class="btn btn--primary btn--large btn--glow">
                         <span>Jetzt Tickets sichern</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
@@ -105,9 +108,24 @@
                         </svg>
                     </a>
                 </div>
-
-
             </div>
+
+            <!-- Vince & Tim Cutout Layer (Split) -->
+            <div class="hero__characters-container" data-parallax="0.08">
+                <!-- Left Character -->
+                <div class="hero__char-wrapper hero__char-wrapper--left">
+                    <img src="assets/images/Vince und Tim mit Transparenz.png" alt="Character Left"
+                        class="hero__char-img">
+                </div>
+                <!-- Right Character -->
+                <div class="hero__char-wrapper hero__char-wrapper--right">
+                    <img src="assets/images/Vince und Tim mit Transparenz.png" alt="Character Right"
+                        class="hero__char-img">
+                </div>
+            </div>
+
+            <!-- Section transition fade -->
+            <div class="section-fade section-fade--bottom"></div>
         </section>
 
         <!-- Trailer Section -->
@@ -174,6 +192,11 @@
 
         <!-- Mindset Section -->
         <section class="mindset">
+            <!-- Grain overlay -->
+            <div class="grain-overlay grain-overlay--subtle"></div>
+            <!-- Top fade -->
+            <div class="section-fade section-fade--top"></div>
+
             <div class="container">
                 <div class="mindset__card reveal">
                     <blockquote class="mindset__quote">
@@ -191,50 +214,52 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Bottom fade -->
+            <div class="section-fade section-fade--bottom"></div>
         </section>
 
-        <!-- Gallery Section -->
+        <!-- Gallery Section - Filmstrip Style -->
         <section class="gallery" id="gallery">
-            <div class="container">
-
-                <div class="gallery__grid gallery__grid--3col">
-                    <!-- Full width banner -->
-                    <div class="gallery__item gallery__item--banner reveal">
+            <div class="gallery__filmstrip-wrapper">
+                <div class="gallery__filmstrip" id="filmstrip">
+                    <div class="gallery__frame gallery__frame--large reveal">
                         <img src="assets/images/segeljungs_001_c_Filmwelt.avif" alt="Segeljungs" class="gallery__img">
-                        <div class="gallery__item-overlay"></div>
+                        <div class="gallery__border"></div>
                     </div>
-                    <!-- Row 1 -->
-                    <div class="gallery__item reveal">
-                        <img src="assets/images/segeljungs_009_c_Filmwelt.avif" alt="Film Still 1" class="gallery__img">
-                        <div class="gallery__item-overlay"></div>
+                    <div class="gallery__frame gallery__frame--portrait reveal">
+                        <img src="assets/images/segeljungs_009_c_Filmwelt.avif" alt="Film Still" class="gallery__img">
+                        <div class="gallery__border"></div>
                     </div>
-                    <div class="gallery__item reveal reveal--delay-1">
-                        <img src="assets/images/segeljungs_002_c_Filmwelt.avif" alt="Film Still 2" class="gallery__img">
-                        <div class="gallery__item-overlay"></div>
+                    <div class="gallery__frame reveal">
+                        <img src="assets/images/segeljungs_002_c_Filmwelt.avif" alt="Film Still" class="gallery__img">
+                        <div class="gallery__border"></div>
                     </div>
-                    <div class="gallery__item reveal reveal--delay-2">
-                        <img src="assets/images/segeljungs_017_c_Filmwelt.avif" alt="Film Still 3" class="gallery__img">
-                        <div class="gallery__item-overlay"></div>
+                    <div class="gallery__frame gallery__frame--tilted reveal">
+                        <img src="assets/images/segeljungs_017_c_Filmwelt.avif" alt="Film Still" class="gallery__img">
+                        <div class="gallery__border"></div>
                     </div>
-                    <!-- Row 2 -->
-                    <div class="gallery__item reveal">
-                        <img src="assets/images/segeljungs_006_c_Filmwelt.avif" alt="Film Still 4" class="gallery__img">
-                        <div class="gallery__item-overlay"></div>
+                    <div class="gallery__frame gallery__frame--portrait reveal">
+                        <img src="assets/images/segeljungs_006_c_Filmwelt.avif" alt="Film Still" class="gallery__img">
+                        <div class="gallery__border"></div>
                     </div>
-                    <div class="gallery__item reveal reveal--delay-1">
-                        <img src="assets/images/segeljungs_011_c_Filmwelt.avif" alt="Film Still 5" class="gallery__img">
-                        <div class="gallery__item-overlay"></div>
+                    <div class="gallery__frame gallery__frame--large reveal">
+                        <img src="assets/images/segeljungs_011_c_Filmwelt.avif" alt="Film Still" class="gallery__img">
+                        <div class="gallery__border"></div>
                     </div>
-                    <div class="gallery__item reveal reveal--delay-2">
-                        <img src="assets/images/segeljungs_018_c_Filmwelt.avif" alt="Film Still 6" class="gallery__img">
-                        <div class="gallery__item-overlay"></div>
+                    <div class="gallery__frame gallery__frame--tilted-reverse reveal">
+                        <img src="assets/images/segeljungs_018_c_Filmwelt.avif" alt="Film Still" class="gallery__img">
+                        <div class="gallery__border"></div>
                     </div>
-                    <!-- Row 3 - centered -->
-                    <div class="gallery__item gallery__item--centered reveal">
-                        <img src="assets/images/segeljungs_000_c_Filmwelt.avif" alt="Film Still 7" class="gallery__img">
-                        <div class="gallery__item-overlay"></div>
+                    <div class="gallery__frame reveal">
+                        <img src="assets/images/segeljungs_000_c_Filmwelt.avif" alt="Film Still" class="gallery__img">
+                        <div class="gallery__border"></div>
                     </div>
                 </div>
+            </div>
+            <!-- Horizontal scroll hint -->
+            <div class="gallery__hint reveal">
+                <span>← Wischen zum Entdecken →</span>
             </div>
         </section>
 
