@@ -851,11 +851,33 @@ ol {
 .mindset {
     position: relative;
     padding: var(--space-32) 0;
-    background: linear-gradient(135deg,
-            var(--color-navy-700) 0%,
-            var(--color-navy-800) 50%,
-            var(--color-navy-900) 100%);
+    background: var(--color-navy-900);
     overflow: hidden;
+}
+
+.mindset::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('../assets/images/Hintergrund Sternenhimmel.avif') center/cover no-repeat;
+    opacity: 0.4;
+    z-index: 0;
+}
+
+.mindset::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to bottom, var(--color-navy-900) 0%, transparent 15%),
+        linear-gradient(to top, var(--color-navy-900) 0%, transparent 15%),
+        linear-gradient(135deg, rgba(10, 22, 40, 0.6) 0%, transparent 50%, rgba(10, 22, 40, 0.6) 100%);
+    z-index: 1;
+}
+
+.mindset .container {
+    position: relative;
+    z-index: 2;
 }
 
 .mindset__card {
