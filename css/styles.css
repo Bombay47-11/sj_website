@@ -1317,7 +1317,7 @@ ol {
    JOURNEY SECTION
    ============================================ */
 .journey {
-    padding: var(--space-24) 0;
+    padding: var(--space-16) 0;
     background: linear-gradient(180deg, var(--color-navy-900) 0%, var(--color-navy-800) 100%);
 }
 
@@ -1386,7 +1386,7 @@ ol {
    FACTS SECTION
    ============================================ */
 .facts {
-    padding: var(--space-24) 0;
+    padding: var(--space-16) 0;
     background: var(--color-navy-800);
 }
 
@@ -1803,11 +1803,11 @@ body::before {
 }
 
 .gallery__nav-btn--prev {
-    left: var(--space-4);
+    left: 24px;
 }
 
 .gallery__nav-btn--next {
-    right: var(--space-4);
+    right: 24px;
 }
 
 @media (max-width: 768px) {
