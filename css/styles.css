@@ -1106,13 +1106,9 @@ ol {
 
 .gallery__filmstrip-wrapper {
     width: 100%;
-    overflow-x: auto;
-    overflow-y: visible;
+    position: relative;
+    /* Removed overflow-x: auto so wrapper doesn't scroll */
     padding: var(--space-8) 0 var(--space-16);
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
 }
 
 .gallery__filmstrip-wrapper::-webkit-scrollbar {
@@ -1123,7 +1119,18 @@ ol {
     display: flex;
     gap: var(--space-6);
     padding: 0 var(--space-8);
-    width: max-content;
+    width: 100%;
+    /* Changed from max-content to allow internal scrolling */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    align-items: center;
+}
+
+.gallery__filmstrip::-webkit-scrollbar {
+    display: none;
 }
 
 .gallery__frame {
