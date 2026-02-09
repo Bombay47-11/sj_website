@@ -1804,6 +1804,8 @@ body::before {
 .gallery__nav-btn:hover {
     background: var(--color-ocean-600);
     transform: translateY(-50%) scale(1.1);
+    opacity: 1 !important;
+    /* Force visibility */
 }
 
 .gallery__nav-btn:disabled,
