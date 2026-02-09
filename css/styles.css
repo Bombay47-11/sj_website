@@ -803,6 +803,27 @@ ol {
     object-fit: cover;
 }
 
+/* Responsive iframe container for trailer video */
+.trailer__iframe-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+}
+
+.trailer__iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: var(--radius-xl);
+}
+
 .trailer__play-overlay {
     position: absolute;
     inset: 0;
