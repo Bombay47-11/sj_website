@@ -391,13 +391,36 @@
 
         if (!filmstrip || !prevBtn || !nextBtn) return;
 
+        let scrollAnimationId;
+        const SCROLL_SPEED = 8;
+
         function updateButtons() {
             const scrollLeft = filmstrip.scrollLeft;
             const maxScroll = filmstrip.scrollWidth - filmstrip.clientWidth;
-
-            // Allow some tolerance (1px)
             prevBtn.disabled = scrollLeft <= 1;
             nextBtn.disabled = scrollLeft >= maxScroll - 1;
+        }
+
+        function startScrolling(direction) {
+            stopScrolling();
+            function animate() {
+                filmstrip.scrollLeft += direction * SCROLL_SPEED;
+                const maxScroll = filmstrip.scrollWidth - filmstrip.clientWidth;
+                if ((direction === -1 && filmstrip.scrollLeft <= 0) ||
+                    (direction === 1 && filmstrip.scrollLeft >= maxScroll)) {
+                    stopScrolling();
+                    return;
+                }
+                scrollAnimationId = requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        function stopScrolling() {
+            if (scrollAnimationId) {
+                cancelAnimationFrame(scrollAnimationId);
+                scrollAnimationId = null;
+            }
         }
 
         function scrollGallery(direction) {
@@ -419,6 +442,12 @@
 
         prevBtn.addEventListener('click', () => scrollGallery(-1));
         nextBtn.addEventListener('click', () => scrollGallery(1));
+
+        // Hover to scroll
+        prevBtn.addEventListener('mouseenter', () => startScrolling(-1));
+        prevBtn.addEventListener('mouseleave', stopScrolling);
+        nextBtn.addEventListener('mouseenter', () => startScrolling(1));
+        nextBtn.addEventListener('mouseleave', stopScrolling);
 
         filmstrip.addEventListener('scroll', () => {
             // Debounce or throttle could be good, but direct update is responsive
